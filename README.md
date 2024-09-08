@@ -14,9 +14,7 @@
 
 1、Unreal-Messiah对齐Aurora
 
-2、
-
-[角色渲染综述]: 角色渲染.md
+2、[角色渲染.md](角色渲染.md )
 
 3、Unreal编辑器工具开发
 
