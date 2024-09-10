@@ -1,0 +1,1 @@
+其实ShellComponent就是一个**特殊的MeshComponent**，**和MeshComponent共用了Mesh**。
