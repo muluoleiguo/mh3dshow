@@ -60,7 +60,7 @@ Unreal和Messiah一系列对齐的技术链，首先来看下实机效果
 
 ## 3.Unreal开发
 
-### 3.1 一个Mesh**，**可以有多层材质
+### 3.1 一个Mesh，可以有多层材质
 
 其实ShellComponent就是一个**特殊的MeshComponent**，**和MeshComponent共用了Mesh**。
 
@@ -108,15 +108,13 @@ Unreal和Messiah一系列对齐的技术链，首先来看下实机效果
 
 ![ik](README.assets/ik.gif)
 
-#### 4.1.2 TODO
+#### 4.1.2 骨骼拼接，挂接物动画同步，工具中的扩展
+
+TODO
 
 结合CharacterEditor的扩展一起
 
-还可以结合脚本状态机
-
-别忘了自定义成就秀
-
-
+还可以结合脚本状态机<->动画蓝图状态机
 
 
 
@@ -252,8 +250,9 @@ https://www.shadertoy.com/view/lX2XzV
 
 ### 5.1 自动化构建
 
-美术上传资源，策划修改配置，程序修改代码之后，到最后能够让QA跑起来的过程都是自动化构建部署在TeamCity上的，包括引擎Build，编译Shader，RefreshShaderGraph，资源代码Cook，合并分支等众多流程
+美术上传资源，策划修改配置，程序修改代码之后，到最后能够让QA跑起来的过程都是自动化构建部署在**TeamCity**上的，包括引擎Build，编译Shader，RefreshShaderGraph，资源代码Cook，合并分支等众多流程
 
 ### 5.2 自动化测试
 
 截图对比自动化回归
+
