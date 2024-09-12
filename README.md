@@ -50,7 +50,7 @@ Unreal和Messiah一系列对齐的技术链，首先来看下实机效果
 
 ![669dcc55190e8f17e87e5f5bQvyMUhup05](README.assets/669dcc55190e8f17e87e5f5bQvyMUhup05.gif)![66863f8cf397df21f2ed3a0bRyGR200L05](README.assets/66863f8cf397df21f2ed3a0bRyGR200L05.gif)![666aea5c5a577d064f6f947aETQKRzIb05](README.assets/666aea5c5a577d064f6f947aETQKRzIb05.gif)![66588d812f7585e5abbae48dToisq0vT01](README.assets/66588d812f7585e5abbae48dToisq0vT01.gif)
 
-
+![aurora](README.assets/aurora.gif)
 
 ## 2.Messiah自研引擎开发 TODO
 
@@ -64,7 +64,9 @@ Unreal和Messiah一系列对齐的技术链，首先来看下实机效果
 
 其实ShellComponent就是一个**特殊的MeshComponent**，**和MeshComponent共用了Mesh**。
 
-### 3.2 自定义ShadingModel
+### 3.2 不改引擎源码自定义ShadingModel
+
+[文档链接](Unreal/自定义ShadingModel.md)
 
 ### 3.3 扩展编辑器
 
