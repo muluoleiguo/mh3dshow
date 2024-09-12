@@ -124,6 +124,10 @@ TODO
 
 
 
+
+https://github.com/user-attachments/assets/4c67dbc9-e85d-4945-aae4-50b62a6d0e19
+
+
 由于整个3D玩法的基调就是类似叠纸的奇迹暖暖的换装游戏，因此这一块是最重要的Gameplay之一。
 
 首先请看视频
@@ -182,6 +186,10 @@ TODO: 这里主要是结合AnimationBlueprint来讲解， 怎么做挂接物的�
 
 
 ### 4.3 妆容 TODO
+
+
+https://github.com/user-attachments/assets/f0781c08-47ce-4814-85bc-7182229a6223
+
 
 
 
