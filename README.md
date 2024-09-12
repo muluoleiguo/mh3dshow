@@ -1,4 +1,4 @@
-# 由于项目保密原因，不会出现内部编辑器、工具等图像，只有外放内容
+# 由于项目保密原因，不会出现内部编辑器、工具等图像，只有外放内容。目前此文档还不太完善，会逐步更新
 
 [TOC]
 
@@ -8,13 +8,17 @@
 
 一听到梦幻西游端游，可能会觉得是技术栈过早的项目，但是也不尽然，请看下文
 
-> 1、注意动态图像gif比较大，直接web预览可能需要一些加载时间 
+> 1、注意动态图像gif或者直接上传github的mp4比较大，直接web预览可能需要一些加载时间 。还请耐心等待。
 
 
 
 我负责的模块是梦幻西游中近两年才开始接入的3D技术，整体的技术栈采用
 
-美术，TA，策划，程序**编辑器**用**Unreal**4.26，程序**Runtime**采用自研引擎**Messiah**，项目流水目标是渲染还原二次元偏厚涂的风格立绘画风。
+美术，TA，策划，程序**编辑器**用**Unreal**4.26，程序**Runtime**采用自研引擎**Messiah**，
+
+采用自研的Unreal资产转换Messiah的插件，转换模型，材质，骨骼，动画，场景，特效等资产到Messiah，同时Gameplay相关的配置自动导表给Messiah，**Messiah Runtime对齐 Unreal**。
+
+
 
 此处Unreal编辑器的职责包括但不限于
 
@@ -25,9 +29,9 @@
 * 程序扩展编辑器
 * 程序开发引擎功能
 
-采用自研的Unreal资产转换Messiah的插件，转换模型，材质，骨骼，动画，场景，特效等资产到Messiah，同时Gameplay相关的配置自动导表给Messiah，Runtime对齐 Unreal。
 
-上图是立绘效果，下图是Messiah引擎Runtime渲染效果
+
+渲染还原二次元偏厚涂的风格立绘画风。上图是立绘效果，下图是Messiah引擎Runtime渲染效果
 
 <p style="text-align: center;">
       <img src="项目简介.assets/POPO-20240908-114057.png" alt="Image 1" style="display: inline-block; max-width: 30%;">
@@ -35,7 +39,7 @@
 
 
 
-如果对角色渲染比较感兴趣，可以看这一个文档，不过主要是TA的工作内容：[角色渲染.md](角色渲染.md )
+如果对角色渲染比较感兴趣，可以看这一个文档，不过这块主要是TA的工作内容：[角色渲染.md](角色渲染.md )
 
 
 
@@ -48,53 +52,39 @@ Unreal和Messiah一系列对齐的技术链，首先来看下实机效果
 
 **以下视频均为UE&Messiah双引擎同时打开 + 实机录制的同步镜头视频**
 
-![669dcc55190e8f17e87e5f5bQvyMUhup05](README.assets/669dcc55190e8f17e87e5f5bQvyMUhup05.gif)![66863f8cf397df21f2ed3a0bRyGR200L05](README.assets/66863f8cf397df21f2ed3a0bRyGR200L05.gif)![666aea5c5a577d064f6f947aETQKRzIb05](README.assets/666aea5c5a577d064f6f947aETQKRzIb05.gif)![66588d812f7585e5abbae48dToisq0vT01](README.assets/66588d812f7585e5abbae48dToisq0vT01.gif)
+![669dcc55190e8f17e87e5f5bQvyMUhup05](README.assets/669dcc55190e8f17e87e5f5bQvyMUhup05.gif)![66863f8cf397df21f2ed3a0bRyGR200L05](README.assets/66863f8cf397df21f2ed3a0bRyGR200L05.gif)
+
+![666aea5c5a577d064f6f947aETQKRzIb05](README.assets/666aea5c5a577d064f6f947aETQKRzIb05.gif)![66588d812f7585e5abbae48dToisq0vT01](README.assets/66588d812f7585e5abbae48dToisq0vT01.gif)
+
+这个是UE、Messiah通过RPC，双开两个引擎实时同步，对齐Camera等
 
 ![aurora](README.assets/aurora.gif)
 
-## 2.Messiah自研引擎开发 TODO
-
-由于项目的特殊性，不像UE项目直接Run In Editor就可以了，我们项目自动转换资源之后再Messiah中跑起来，如果想要调试就要用到公司自研的Sunshine编辑器的功能，实时查看游戏Runtime的对象和其属性，调整相机等。
 
 
+## 2.Gamplay
 
-## 3.Unreal开发
+### 2.0 脚本代码框架
 
-### 3.1 一个Mesh，可以有多层材质
+祖传EC
 
-其实ShellComponent就是一个**特殊的MeshComponent**，**和MeshComponent共用了Mesh**。
+- 组件化
+- 事件机制驱动
+- 数据文档化
 
-### 3.2 不改引擎源码自定义ShadingModel
+#### 2.0.1 协程 
 
-[文档链接](Unreal/自定义ShadingModel.md)
+这里主要是结合资源加载，烘焙妆容、染色贴图，RPC等一系列异步逻辑的同步化改造
 
-### 3.3 扩展编辑器
+#### 2.0.2 逻辑Plugin化
 
-#### 3.3.1 染色编辑器
+结合打包，Runtime，Editor不同类型代码
 
-由于slate编写起来比较的痛苦，并且cpp的开发效率不是很高，梦幻西游端游UE编辑器中不少的工具都是用PyQt来实现的（网易的主流语言是python。。。），包括如下的这个染色编辑器
+#### 2.0.3 SubSystem + View
 
-### 3.4 数据导出
+生命周期自动管理，依托Engine或者Editor或者View（梦幻西游游戏本地会多开）
 
-#### 3.4.1 蓝图转换为数据
-
-美术在Unreal中通过SkeletalMeshComponent，项目开发的ShellComponent，PrefabComponent等组合成一个Actor蓝图，要在Messiah runtime跑起来，需要对数据格式进行一次转换。
-
-## 4.Gamplay
-
-### 4.0 代码框架 TODO 需要重点强调展示
-
-#### 4.0.1 协程 
-
-这里主要是结合资源加载，烘焙染色贴图，RPC等一系列异步逻辑的同步化改造来说
-
-#### 4.0.2 逻辑Plugin化
-
-结合打包，Runtime，Editor来说
-
-#### 4.0.3 SubSystem + View
-
-#### 4.0.4 网络
+#### 2.0.4 网络
 
 项目的网络架构非常的特殊，不是经典的C/S架构，由于梦幻西游端游是一款多开的游戏，并且2D部分引擎采用的是古早[云风](https://blog.codingnow.com/)开发的风魂引擎，由于历史原因，重构为3D引擎不太可能，因此Runtime的Messiah引擎是独立的渲染进程，通过共享内存和风魂的中心进程通信，然后风魂再和服务端发起rpc通信。
 
@@ -104,25 +94,31 @@ Unreal和Messiah一系列对齐的技术链，首先来看下实机效果
 
 
 
-### 4.1 动画系统
+### 2.1 动画系统
 
-#### 4.1.1 ik的应用，其中还有输出OpenPose数据生成AI图像的玩法
+#### 2.1.0 Unreal制作简易的动画蓝图，Messiah中实现完整的
+
+主要是两个引擎的动画系统大相径庭，难以构建一个数据兼容层
+
+
+
+#### 2.1.1 ik的应用，其中还有输出OpenPose数据生成AI图像的玩法
 
 ![ik](README.assets/ik.gif)
 
-#### 4.1.2 骨骼拼接，挂接物动画同步，工具中的扩展
+#### 2.1.2 骨骼拼接，挂接物动画同步，工具中的扩展
 
-TODO
+最大化骨骼的制作思路随着资源量变大不符合需求，额外增加的如果通过挂接物的形式，又增加了很多软骨，从逻辑上不方便管理，每个子物体都需要有自己的动画蓝图，同步机制比较麻烦（虽然也做了），但是迭代资源过程中采用Runtime把骨骼拼接在一起的实现。
 
-结合CharacterEditor的扩展一起
+#### 2.1.3 布料
 
-还可以结合脚本状态机<->动画蓝图状态机
-
-
-
-### 4.2 换装
+在Messiah引擎中有自己的布料编辑器，暂时UE里面是没有转换对齐的，纯Messiah制作
 
 
+
+### 2.2 换装
+
+首先请看简短的演示
 
 
 https://github.com/user-attachments/assets/4c67dbc9-e85d-4945-aae4-50b62a6d0e19
@@ -130,36 +126,21 @@ https://github.com/user-attachments/assets/4c67dbc9-e85d-4945-aae4-50b62a6d0e19
 
 由于整个3D玩法的基调就是类似叠纸的奇迹暖暖的换装游戏，因此这一块是最重要的Gameplay之一。
 
-首先请看视频
-
-TODO: 视频演示。
-
-
-
-首先从整个角色的构成来说
-
-角色由
-
-* 身体的主要骨骼
-* 脸部骨骼
-* 挂接物的骨骼
-* 软骨
-
 现在的身体主要骨骼一共有4种体型（男，女，巨人，虎头怪），19角色对应的脸部。挂接物都是可以通用的。
 
 
 
-从换装的逻辑上来说分为三个大的模块
+从换装的Gameplay逻辑上来说分为三个大的模块
 
 1、装备(Equip)
 
-2、资产模型(Prefab) 或者可以叫做SkeletalMesh以及其Skeleton甚至是StaticMesh
+2、资产模型(Messiah Prefab) 对应Unreal SkeletalMesh以及其Skeleton
 
 3、挂接处理(Attachment)
 
 
 
-#### 4.2.1、装备(Equip)
+#### 2.2.1、装备(Equip)
 
 **策划要求小件装备替换大件装备**
 
@@ -169,23 +150,17 @@ TODO: 视频演示。
 
 
 
-#### 4.2.2、资产模型(Prefab) 
+#### 2.2.2、资产模型
 
 这一部分主要是由于项目的特殊性，即商业引擎**Unreal**编辑-》自研引擎**Messiah**运行差异导致的，如果在Unreal中加载SkeletalMesh资源不论是同步的还是异步的都是直接了当的，有SkeletalMeshComponent来打辅助很方便。但是对于Messiah而言，重要的是把美术编辑的数据转换为Messiah可以识别的格式并且Runtime用相应的逻辑使用这些数据。
 
-这里结合项目组开发的ShellComponent来讲解
+#### 2.2.3、挂接
 
-TODO:
-
-
-
-#### 4.2.3、挂接
-
-TODO: 这里主要是结合AnimationBlueprint来讲解， 怎么做挂接物的动画同步，在各种编辑器中如何适配的
+怎么做挂接物的动画同步，在各种编辑器中如何适配的
 
 
 
-### 4.3 妆容 TODO
+### 2.3 妆容
 
 
 https://github.com/user-attachments/assets/f0781c08-47ce-4814-85bc-7182229a6223
@@ -193,7 +168,7 @@ https://github.com/user-attachments/assets/f0781c08-47ce-4814-85bc-7182229a6223
 
 
 
-### 4.4 染色
+### 2.4 染色
 
 ![染色3](README.assets/染色3.gif)
 
@@ -244,7 +219,14 @@ https://www.shadertoy.com/view/lX2XzV
 
 
 
-### 4.5 剧情
+### 2.5 场景
+
+* 场景里面的物体分好了 lod0 和 lod1，物体进行设置 关卡细节，Runtime 切换
+* Map里面有多个Level，和UE对齐
+
+
+
+### 2.6 剧情
 
 之前有说到，项目的架构是采用Unreal作为编辑器，Messiah作为Runtime。
 
@@ -256,7 +238,49 @@ https://www.shadertoy.com/view/lX2XzV
 
 
 
-## 5、自动化
+## 3.Unreal开发
+
+### 3.1 一个Mesh，可以有多层材质
+
+其实ShellComponent就是一个**特殊的MeshComponent**，**和MeshComponent共用了Mesh**。
+
+### 3.2 不改引擎源码自定义ShadingModel
+
+[文档链接](Unreal/自定义ShadingModel.md)
+
+### 3.3 扩展编辑器
+
+#### 3.3.1 染色编辑器
+
+由于slate编写起来比较的痛苦，并且cpp的开发效率不是很高，梦幻西游端游UE编辑器中不少的工具都是用PyQt来实现的（网易的主流语言是python。。。），包括如下的这个染色编辑器
+
+### 3.4 数据导出
+
+#### 3.4.1 蓝图转换为数据
+
+美术在Unreal中通过SkeletalMeshComponent，项目开发的ShellComponent，PrefabComponent等组合成一个Actor蓝图，要在Messiah runtime跑起来，需要对数据格式进行一次转换。
+
+### 3.5 LOD工具链
+
+首先明确LOD工具链这里只是针对Mesh的LOD，角色的高低配都共用同一套材质球，材质球用 **StaticLodSwitchV3** 节点进行区别材质高低配效果，Runtime相机与物体的距离切换
+
+![image-20240618190317503](README.assets/image-20240618190317503-1726161193653.png)
+
+
+
+LOD减面流程：**Houdini**中Overpass plugin（引擎组提供支持，直接设置减免百分比）
+
+
+
+
+
+## 4.Messiah自研引擎开发
+
+由于项目的特殊性，不像UE项目直接Run In Editor就可以了，我们项目自动转换资源之后再Messiah中跑起来，如果想要调试就要用到公司自研的Sunshine编辑器的各个插件功能，实时查看游戏Runtime的对象和其属性，调整相机等。
+
+
+
+## 5.自动化
 
 ### 5.1 自动化构建
 
