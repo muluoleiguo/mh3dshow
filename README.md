@@ -132,13 +132,7 @@ https://www.shadertoy.com/view/lX2XzV
 
 
 
-### 2.6 剧情系统
-
-剧情编辑是一个逻辑业务上非常难以处理的存在。
-
-说到过美术是采用**Unreal**作为编辑器，那自然和其他的普通的UE项目是一样的，采用Sequencer编辑LevelSequence，需要把uasset转换为自研引擎**Messiah**能够识别的格式。
-
-单独开发了插件去做数据转换，依托网易自研引擎无关的剧情系统Montage。
+### 
 
 
 
@@ -152,7 +146,29 @@ https://www.shadertoy.com/view/lX2XzV
 
 #### 3.1.2 自动LOD工具链
 
-### 3.2 面向测试开发工具
+#### 3.1.3 Sequencer
+
+剧情（Cinematic）编辑在本项目的工作流程中是一个业务难点。
+
+说到过美术是采用**Unreal**作为编辑器，那自然和其他的普通的UE项目是一样的，采用Sequencer编辑LevelSequence，需要把uasset转换为自研引擎**Messiah**能够识别的格式。
+
+单独开发了插件去做数据转换，依托网易自研引擎无关的剧情系统Montage。
+
+每套时装美术都会出一个CG宣传PV，有一些会变成Runtime的过场动画资产
+
+
+
+比如如下视频:
+
+CG:【爱如龙卷风，超唯美新春外观甜蜜来袭】 https://www.bilibili.com/video/BV1n5411C7Wi
+
+Runtime:
+
+
+
+
+
+### 3.2 面向策划工具
 
 #### 3.2.1 蓝图转换为数据
 
@@ -170,7 +186,7 @@ https://www.shadertoy.com/view/lX2XzV
 
 美术上传资源，策划修改配置，程序修改代码之后，到最后能够让QA跑起来的过程都是自动化构建部署在**TeamCity**上的，包括引擎Build，编译Shader，RefreshShaderGraph，资源代码Cook，合并分支等众多流程
 
-### 5.2 自动化测试
+### 5.2 QA自动化测试
 
 每周版本日，截图对比自动化回归
 
