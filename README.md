@@ -82,6 +82,10 @@ Unreal和Messiah一系列对齐的技术链，首先来看下实机效果
 
 
 
+https://github.com/user-attachments/assets/0a64261e-dc78-4378-aaec-a1401b09f6fa
+
+
+
 #### 2.1.2 Messiah骨骼拼接技术，挂接物动画同步
 
 #### 2.1.3 软骨以及布料
@@ -163,6 +167,10 @@ https://www.shadertoy.com/view/lX2XzV
 CG:【爱如龙卷风，超唯美新春外观甜蜜来袭】 https://www.bilibili.com/video/BV1n5411C7Wi
 
 Runtime:
+
+
+https://github.com/user-attachments/assets/49e2b03e-7dc7-4e91-b3bc-8d6dbbf8f35d
+
 
 
 
