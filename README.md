@@ -136,19 +136,22 @@ https://www.shadertoy.com/view/lX2XzV
 
 
 
-### 
-
-
-
-
-
 ## 3.Unreal开发
 
 ### 3.1 面向美术扩展编辑器
 
-#### 3.1.1 染色编辑器
+#### 3.1.1 染色编辑器等
 
 #### 3.1.2 自动LOD工具链
+
+减面：
+
+* Vertex Color
+* Houdini
+
+合图:
+
+* PCA(主成分分析)
 
 #### 3.1.3 Sequencer
 
@@ -178,7 +181,7 @@ https://github.com/user-attachments/assets/49e2b03e-7dc7-4e91-b3bc-8d6dbbf8f35d
 
 ### 3.2 面向策划工具
 
-#### 3.2.1 蓝图转换为数据
+#### 3.2.1 蓝图转换为自研引擎数据
 
 
 
