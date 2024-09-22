@@ -78,6 +78,10 @@ Unreal和Messiah一系列对齐的技术链，首先来看下实机效果
 
 #### 2.1.1 ik的应用，其中还有输出OpenPose数据生成AI图像的玩法（专利）
 
+
+
+![Game_x64h_Otbj313HvA](README.assets/Game_x64h_Otbj313HvA.gif)
+
 ![ik](README.assets/ik.gif)
 
 
@@ -142,16 +146,15 @@ https://www.shadertoy.com/view/lX2XzV
 
 #### 3.1.1 染色编辑器等
 
-#### 3.1.2 自动LOD工具链
+#### 3.1.2 自动化美术资产工具链
 
-减面：
+TA同学负责开发DDC->UE的工具链(3dsMax插件)
 
-* Vertex Color
-* Houdini
+![POPO20240922-230159](README.assets/POPO20240922-230159.png)
 
-合图:
+下面视频中的工具创建各种资产并组装为某套时装的所有角色Actor蓝图，并完成减面等生成LOD资源。
 
-* PCA(主成分分析)
+
 
 #### 3.1.3 Sequencer
 
@@ -177,13 +180,11 @@ https://github.com/user-attachments/assets/49e2b03e-7dc7-4e91-b3bc-8d6dbbf8f35d
 
 
 
-
-
 ### 3.2 面向策划工具
 
-#### 3.2.1 蓝图转换为自研引擎数据
+#### 3.2.1 蓝图转换为自研引擎可读工具链
 
-
+比如利用3.1.2最后生成的Actor蓝图，策划会编辑Tag，然后序列化为自研引擎的资源。
 
 ## 4.Messiah自研引擎开发
 
@@ -199,5 +200,5 @@ https://github.com/user-attachments/assets/49e2b03e-7dc7-4e91-b3bc-8d6dbbf8f35d
 
 ### 5.2 QA自动化测试
 
-每周版本日，截图对比自动化回归
+每周版本日，通过高度可配置的测试用例，让QA可以自动化回归外放的内容并生成图像文件，通过AI对比Diff，保证外放效果没有收到影响。
 
