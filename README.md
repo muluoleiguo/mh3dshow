@@ -148,13 +148,13 @@ https://www.shadertoy.com/view/lX2XzV
 
 #### 3.1.2 自动化美术资产工具链
 
-TA同学负责开发DDC->UE的工具链(3dsMax插件)
+首先由TA同学负责开发DDC(比如3ds max)->UE的插件
 
 ![POPO20240922-230159](README.assets/POPO20240922-230159.png)
 
-下面视频中的工具创建各种资产并组装为某套时装的所有角色Actor蓝图，并完成减面等生成LOD资源。
+在得到美术通过TA插件导入UE的这些基础的材质球和贴图和SkeletalMesh之后，然后程序化创建各种资产并组装为某套时装的所有角色Actor蓝图，并完成减面等生成LOD资源过程。
 
-
+参考下面视频中的工具：
 
 https://github.com/user-attachments/assets/68e93eca-079f-4f1e-92b9-9a967ac82e07
 
