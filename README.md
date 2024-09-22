@@ -14,8 +14,8 @@
 
 2、为了解决3D自研引擎编辑器不完善的问题，引擎组开发此前花了数年时间研发了**Unreal<->Messiah**对齐的一系列工具链，**美术，TA，策划乃至程序在开发中编辑器用都采用的Unreal4.26**，而放弃使用自研引擎Messiah的编辑器。
 
-![image-20240917220215962](README.assets/image-20240917220215962.png)
-
+ <img src="README.assets/image-20240917220215962.png" width="200"/>
+ 
 整个玩法是我经历了从**0-1**的过程
 
 职责上：我负责了
@@ -31,10 +31,11 @@
 
 整体渲染还原二次元偏厚涂的风格立绘画风。上图是立绘效果，下图是Messiah引擎Runtime渲染效果
 
-<p style="text-align: center;">
-      <img src="项目简介.assets/POPO-20240908-114057.png" alt="Image 1" style="display: inline-block; max-width: 30%;">
-      <img src="项目简介.assets/POPO-20240908-115847.png" alt="Image 1" style="display: inline-block; max-width: 36%;">
 
+
+<center class="half">
+     <img src="项目简介.assets/POPO-20240908-114057.png" width="200"/><img src="项目简介.assets/POPO-20240908-115847.png" width="240"/>
+</center>
 
 
 如果对角色渲染比较感兴趣，可以看这一个文档，不过这块主要是TA的工作内容：[角色渲染.md](角色渲染.md )
@@ -48,13 +49,12 @@ Unreal和Messiah一系列对齐的技术链，首先来看下实机效果
 
 **以下视频均为UE&Messiah双引擎同时打开 + 实机录制的同步镜头视频**
 
-![669dcc55190e8f17e87e5f5bQvyMUhup05](README.assets/669dcc55190e8f17e87e5f5bQvyMUhup05.gif)![66863f8cf397df21f2ed3a0bRyGR200L05](README.assets/66863f8cf397df21f2ed3a0bRyGR200L05.gif)
-
-![666aea5c5a577d064f6f947aETQKRzIb05](README.assets/666aea5c5a577d064f6f947aETQKRzIb05.gif)![66588d812f7585e5abbae48dToisq0vT01](README.assets/66588d812f7585e5abbae48dToisq0vT01.gif)
-
+<img src="README.assets/669dcc55190e8f17e87e5f5bQvyMUhup05.gif" width="200"/>
+<img src="README.assets/66863f8cf397df21f2ed3a0bRyGR200L05.gif" width="200"/>
+<img src="README.assets/666aea5c5a577d064f6f947aETQKRzIb05.gif" width="200"/>
+<img src="README.assets/66588d812f7585e5abbae48dToisq0vT01.gif" width="200"/>
 这个是UE、Messiah通过RPC，双开两个引擎实时同步，对齐Camera等
-
-![aurora](README.assets/aurora.gif)
+<img src="README.assets/aurora.gif" width="200"/>
 
 
 
@@ -82,7 +82,7 @@ Unreal和Messiah一系列对齐的技术链，首先来看下实机效果
 
 ![Game_x64h_Otbj313HvA](README.assets/Game_x64h_Otbj313HvA.gif)
 
-![ik](README.assets/ik.gif)
+<img src="README.assets/ik.gif" width="600"/>
 
 
 
@@ -176,8 +176,9 @@ https://github.com/user-attachments/assets/68e93eca-079f-4f1e-92b9-9a967ac82e07
 
 CG:【爱如龙卷风，超唯美新春外观甜蜜来袭】 https://www.bilibili.com/video/BV1n5411C7Wi
 
-Runtime:
 
+
+Runtime:
 
 https://github.com/user-attachments/assets/49e2b03e-7dc7-4e91-b3bc-8d6dbbf8f35d
 
