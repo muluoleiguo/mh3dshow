@@ -156,6 +156,10 @@ TA同学负责开发DDC->UE的工具链(3dsMax插件)
 
 
 
+https://github.com/user-attachments/assets/68e93eca-079f-4f1e-92b9-9a967ac82e07
+
+
+
 #### 3.1.3 Sequencer
 
 剧情（Cinematic）编辑在本项目的工作流程中是一个业务难点。
