@@ -15,7 +15,7 @@
 2、为了解决3D自研引擎编辑器不完善的问题，引擎组开发此前花了数年时间研发了**Unreal<->Messiah**对齐的一系列工具链，**美术，TA，策划乃至程序在开发中编辑器用都采用的Unreal4.26**，而放弃使用自研引擎Messiah的编辑器。
 
  <img src="README.assets/image-20240917220215962.png" width="200"/>
- 
+
 整个玩法是我经历了从**0-1**的过程
 
 职责上：我负责了
@@ -64,13 +64,64 @@ Unreal和Messiah一系列对齐的技术链，首先来看下实机效果
 
 #### 2.0.1 异步逻辑协程
 
+Gameplay中存在诸多异步逻辑，比如加载资源等IO，动态贴图合并TextureAtlas，等待正确的渲染结果等。为了避免陷入回调地狱，一句话概括，抛弃所有的回调，改用协程。
+
 #### 2.0.2 逻辑Plugin化
+
+部分Messiah项目可能通用的代码，编辑器代码Runtime不需要的，或者内部调试的代码等统一解耦作为Plugin，减轻核心Gameplay代码复杂度。比如
+
+* 角色动画编辑器, 剧情编辑器Montage等Editor部分
+* hot reload，断点，GM指令，hunter等网易内部SDK
+* ImGui的内部调试UI等图形化辅助开发部分
 
 #### 2.0.3 SubSystem
 
+Messiah借鉴UE的设计理念，在原有五类之外扩展一个ViewSubsystem生命周期类。
+
+![image-20241008224816373](README.assets/image-20241008224816373.png)
+
+由于游戏特性，玩家经常本地开5个游戏客户端，然后游戏中UI也有小型的3D场景（红框内的），大的场景以及角色和UI小窗口的被称作**ShowRoom**的都归属于一个View。
+
+比如管理小窗口相机等的GameViewportSubsystem, 管理玩家输入的InputSubsystem（点击小窗或者大场景角色交互，或者IK玩法操控Pose等），用于截图的ScreenshotShotSubsystem等（低配ShowRoom有优化，场景不是真的场景，就是2D图像）
+
+除此之外，其余的大量之前用"Manager"的Gameplay层级逻辑都根据不同生命周期重构为Subsystem。
+
 #### 2.0.4 网络同步模块
 
+用伪代码描述
 
+Entity、Component、Extension架构之上 C/S同一份代码，用装饰器修饰rpc方法。用类似宏去区分调用限制，参数类型等。
+
+```python
+@rpc_method(ATHENA_ONLY, CustomType(PropOperate))
+def xxxxx(self, operate: PropOperate):
+    pass
+```
+
+利用python协程支持有返回值的rpc
+
+```python
+async def __call__(self, *args, **kwargs):
+    event = asyncio.Event()
+    # gen unique rpc id
+    # serialize(args) 
+    # rpc
+    await event.wait()
+    return event.result
+```
+
+支持用meta描述的属性同步
+
+```python
+AvatarProp = {
+	"m_name": PField(P_STR, default="jxk"),  # 名字
+	"m_char_id": PField(P_INT)  # 角色id
+}
+```
+
+#### 2.0.5 渲染参数部分
+
+在不同的场景，获取显卡信息之后，根据设备等级分级预先设置各个渲染参数。Runtime修改使用上下文管理器对操作记录，并进行适当的操作限制、内容过滤和阻拦。
 
 ### 2.1 动画系统
 
@@ -138,8 +189,6 @@ https://www.shadertoy.com/view/lX2XzV
 
 ### 2.5 场景以及LOD
 
-
-
 ## 3.Unreal开发
 
 ### 3.1 面向美术扩展编辑器
@@ -195,15 +244,29 @@ https://github.com/user-attachments/assets/49e2b03e-7dc7-4e91-b3bc-8d6dbbf8f35d
 
 主要是扩展Graph（类似动画蓝图）的编辑器，Runtime属性反射等功能的编辑器等
 
+比如在剧情编辑器中，纯脚本实现动画混合功能，支持全局动态动作速率以及动画轨道section的速率。利用积分和动态规划预计算，对美术编辑的blend曲线缓存。
+
 
 
 ## 5.自动化
 
-### 5.1 自动化构建
-
-美术上传资源，策划修改配置，程序修改代码之后，到最后能够让QA跑起来的过程都是自动化构建部署在**TeamCity**上的，包括引擎Build，编译Shader，RefreshShaderGraph，资源代码Cook，合并分支等众多流程
-
-### 5.2 QA自动化测试
+### 5.1 QA自动化测试
 
 每周版本日，通过高度可配置的测试用例，让QA可以自动化回归外放的内容并生成图像文件，通过AI对比Diff，保证外放效果没有收到影响。
+
+比如下图是支持可配置的角色以及挂接物的动画都固定某一帧(材质特效软骨物理等均暂停)
+
+![image-20241008221515607](README.assets/image-20241008221515607.png)
+
+每周全量自动跑测试用例，与QA人肉确认过的标准数据集对比，如果有对比不通过的列举出来。
+
+
+
+### 5.2 自动化构建
+
+美术上传资源，策划修改配置，程序修改代码之后，到最后能够让QA跑起来的过程都是自动化构建部署在**TeamCity**上的，包括引擎Build，编译Shader，RefreshShaderGraph，资源代码Cook，合并分支，markdown构建网页等众多流程
+
+#### 5.3.1 内部wiki站点
+
+部署在win server上，用[`NSSM`](https://nssm.cc/)包装两个服务，一个Auth服务用于鉴权，一个nginx服务负责做壳和端口分发。实际是mkdocs，使用的主题是 [`mkdocs-material`](https://squidfunk.github.io/mkdocs-material/) 。支持**中文搜索**，**视频**，**公式**等
 
