@@ -8,9 +8,9 @@
 
 一听到梦幻西游端游，可能会觉得是技术栈过早的项目，确实如此，作为20年前的2D游戏，采用CPU软光栅渲染的自研引擎（[云风](https://blog.codingnow.com/)开发的风魂引擎）, 确实已经落后时代了。
 
-为了提升画面表现力（卖时装），我负责的模块Runtime采用独立的自研3D引擎（Messiah）
+为了提升画面表现力（卖时装），我负责的模块Runtime采用独立的自研3D引擎（Messiah）硬生生塞到2D游戏引擎里面。
 
-1、**3D引擎作为一个独立进程，同时为多个2D进程（玩家本地会多开几个游戏同时玩）提供渲染服务，两个引擎通过共享内存进行通信，通过SwapChain让3D引擎在2D引擎窗口绘制**
+![img](README.assets/athena整体架构.png)
 
 2、为了解决3D自研引擎编辑器不完善的问题，引擎组开发此前花了数年时间研发了**Unreal<->Messiah**对齐的一系列工具链，**美术，TA，策划乃至程序在开发中编辑器用都采用的Unreal4.26**，而放弃使用自研引擎Messiah的编辑器。
 
@@ -23,7 +23,7 @@
 * **搭建这套繁杂的跨引擎游戏制作管线**
 * **工具链的完善，跨引擎的数据组织形式**
 
-* **Runtime Gameplay的绝大部分开发任务**
+* **Runtime Gameplay的绝大部分开发任务（Messiah脚本代码从0开始写的）**
 
 而引擎组的同学主要负责对齐引擎的渲染效果，资产转换等。
 
@@ -45,7 +45,7 @@
 
 ## 1.Unreal对齐Messiah
 
-Unreal和Messiah一系列对齐的技术链，首先来看下实机效果
+Aurora：Unreal和Messiah一系列对齐的技术链，首先来看下实机效果
 
 **以下视频均为UE&Messiah双引擎同时打开 + 实机录制的同步镜头视频**
 
@@ -266,7 +266,7 @@ https://github.com/user-attachments/assets/49e2b03e-7dc7-4e91-b3bc-8d6dbbf8f35d
 
 美术上传资源，策划修改配置，程序修改代码之后，到最后能够让QA跑起来的过程都是自动化构建部署在**TeamCity**上的，包括引擎Build，编译Shader，RefreshShaderGraph，资源代码Cook，合并分支，markdown构建网页等众多流程
 
-#### 5.3.1 内部wiki站点
+#### 5.2.1 内部wiki站点
 
 部署在win server上，用[`NSSM`](https://nssm.cc/)包装两个服务，一个Auth服务用于鉴权，一个nginx服务负责做壳和端口分发。实际是mkdocs，使用的主题是 [`mkdocs-material`](https://squidfunk.github.io/mkdocs-material/) 。支持**中文搜索**，**视频**，**公式**等
 
